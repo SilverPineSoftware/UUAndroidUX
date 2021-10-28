@@ -10,3 +10,4 @@ dependencyResolutionManagement {
 rootProject.name = "UUAndroidUX"
 include ':app'
 include ':ux'
+include ':ViewAnimator'
