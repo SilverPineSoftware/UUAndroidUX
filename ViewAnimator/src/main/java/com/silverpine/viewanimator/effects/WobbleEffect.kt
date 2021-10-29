@@ -5,7 +5,7 @@ import android.view.View
 import com.silverpine.viewanimator.BaseViewAnimator
 
 
-class Wobble : BaseViewAnimator() {
+class WobbleEffect : BaseViewAnimator() {
     override fun prepare(target: View) {
         val width: Int = target?.width ?: 0
         val one = (width / 100.0).toFloat()

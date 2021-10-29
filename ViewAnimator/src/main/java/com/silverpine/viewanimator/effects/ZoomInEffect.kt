@@ -5,7 +5,7 @@ import android.view.View
 
 import com.silverpine.viewanimator.BaseViewAnimator
 
-class ZoomIn : BaseViewAnimator() {
+class ZoomInEffect : BaseViewAnimator() {
     override fun prepare(target: View) {
         getAnimatorAgent().playTogether(
             ObjectAnimator.ofFloat(target, View.SCALE_X, 0.45f, 1f),

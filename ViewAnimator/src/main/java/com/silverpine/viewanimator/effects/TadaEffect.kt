@@ -4,7 +4,7 @@ import android.animation.ObjectAnimator
 import android.view.View
 import com.silverpine.viewanimator.BaseViewAnimator
 
-class Tada : BaseViewAnimator() {
+class TadaEffect : BaseViewAnimator() {
     override fun prepare(target: View) {
         getAnimatorAgent().playTogether(
             ObjectAnimator.ofFloat(
