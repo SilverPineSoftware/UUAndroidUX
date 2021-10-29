@@ -1,12 +1,14 @@
 package com.silverpine.uu.ux
 
+import android.animation.Animator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.silverpine.viewanimator.AnimationEffect
-import com.silverpine.viewanimator.ViewAnimator
+import com.silverpine.viewanimator.UUViewAnimator
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
@@ -21,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         text = findViewById(R.id.animated_text)
 
-        animators.addAll(arrayOf(AnimationEffect.Pulse, AnimationEffect.Wobble, AnimationEffect.Shake, AnimationEffect.Flash, AnimationEffect.Bounce, AnimationEffect.ZoomIn ))
-
+        animators.addAll(arrayOf(AnimationEffect.Pulse, AnimationEffect.Wobble, AnimationEffect.Shake, AnimationEffect.Flash, AnimationEffect.Bounce, AnimationEffect.ZoomIn, AnimationEffect.Tada))
+        //Loop over sample AnimationEffects
         Timer().schedule(0, 5000) {
             runOnUiThread {
                 playAnimation(text)
@@ -48,11 +50,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun playAnimation(view: View) {
-        ViewAnimator.getComposer(animators[animIndex])
+        UUViewAnimator.getComposer(animators[animIndex])
             .duration(2000)
             .repeat(1)
-            .playOn(view)
+            .interpolate(AccelerateDecelerateInterpolator())
+            .withListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) { }
 
-        view.animate()
+                override fun onAnimationEnd(animation: Animator) { }
+
+                override fun onAnimationCancel(animation: Animator) { }
+
+                override fun onAnimationRepeat(animation: Animator) { }
+            })
+            .playOn(view)
     }
 }
