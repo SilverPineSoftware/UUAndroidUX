@@ -1,8 +1,8 @@
-package com.silverpine.viewanimator.effects
+package com.silverpine.uu.ux.viewanimator.effects
 
 import android.animation.ObjectAnimator
 import android.view.View
-import com.silverpine.viewanimator.BaseViewAnimator
+import com.silverpine.uu.ux.viewanimator.BaseViewAnimator
 
 class TadaEffect : BaseViewAnimator() {
     override fun prepare(target: View) {

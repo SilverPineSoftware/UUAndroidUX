@@ -1,6 +1,6 @@
-package com.silverpine.viewanimator
+package com.silverpine.uu.ux.viewanimator
 
-import com.silverpine.viewanimator.effects.*
+import com.silverpine.uu.ux.viewanimator.effects.*
 import java.lang.Error
 import java.lang.Exception
 

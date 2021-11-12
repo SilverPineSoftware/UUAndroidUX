@@ -7,8 +7,8 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.silverpine.viewanimator.AnimationEffect
-import com.silverpine.viewanimator.UUViewAnimator
+import com.silverpine.uu.ux.viewanimator.AnimationEffect
+import com.silverpine.uu.ux.viewanimator.UUViewAnimator
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule

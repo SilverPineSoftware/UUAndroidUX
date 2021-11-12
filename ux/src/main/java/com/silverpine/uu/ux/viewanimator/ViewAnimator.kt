@@ -1,10 +1,9 @@
-package com.silverpine.viewanimator
+package com.silverpine.uu.ux.viewanimator
 
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.Interpolator
-import java.lang.RuntimeException
 
 const val NO_DELAY: Long = 0
 const val INFINITE = -1

@@ -1,4 +1,4 @@
-package com.silverpine.viewanimator
+package com.silverpine.uu.ux.viewanimator
 
 import android.animation.Animator
 import android.animation.AnimatorSet
