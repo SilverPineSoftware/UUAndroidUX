@@ -2,7 +2,9 @@ package com.silverpine.uu.ux
 
 import android.app.AlertDialog
 import android.content.Context
+import android.widget.Toast
 import androidx.annotation.StringRes
+import com.silverpine.uu.core.UUThread
 
 fun Context.uuPrompt(
     @StringRes title: Int = -1,
@@ -46,4 +48,12 @@ fun Context.uuPrompt(
 
     val dialog = builder.create()
     dialog.show()
+}
+
+fun Context.uuShowToast(text: String)
+{
+    UUThread.runOnMainThread()
+    {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+    }
 }
