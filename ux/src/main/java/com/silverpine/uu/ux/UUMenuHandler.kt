@@ -62,6 +62,22 @@ class UUMenuHandler(private val menu: Menu)
         return menu.add(0, id, 0, titleResource)
     }
 
+    fun addAction(title: String, action: Runnable): MenuItem
+    {
+        val id = addHandler(action)
+        val item = menu.add(0, id, 0, title)
+        item.uuSetAsActionAlways()
+        return item
+    }
+
+    fun addAction(@StringRes titleResource: Int, action: Runnable): MenuItem
+    {
+        val id = addHandler(action)
+        val item = menu.add(0, id, 0, titleResource)
+        item.uuSetAsActionAlways()
+        return item
+    }
+
     private fun addHandler(action: Runnable): Int
     {
         lastId++
