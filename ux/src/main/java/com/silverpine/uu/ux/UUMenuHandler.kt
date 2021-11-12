@@ -9,37 +9,37 @@ import androidx.annotation.StringRes
  * runnable actions to them.
  *
  * @sample
- *
-class SomeActivity : AppCompatActivity()
+
+open class SomeActivity: AppCompatActivity()
 {
-    private var menuHandler: UUMenuHandler? = null
+    private lateinit var menuHandler: UUMenuHandler
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean
+    {
+        menu?.let()
+        {
+            it.clear()
+
+            populateMenu(menuHandler)
+            return true
+        }
+
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean
     {
-        val handler = UUMenuHandler(menu)
-        populateMenu(handler)
-        menuHandler = handler
+        menuHandler = UUMenuHandler(menu)
         return true
     }
 
     open fun populateMenu(menuHandler: UUMenuHandler)
     {
-        menuHandler.add(R.string.some_text_resource)
-        {
-        // Code to do something on menu click
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
-        menuHandler?.let()
-        {
-            return it.handleMenuClick(item)
-        }
-        ?: run()
-        {
-            return false
-        }
+        return menuHandler.handleMenuClick(item)
     }
 }
 
