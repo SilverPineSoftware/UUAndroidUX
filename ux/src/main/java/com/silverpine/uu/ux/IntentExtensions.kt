@@ -15,3 +15,16 @@ fun <T: Parcelable> Intent.uuRequireParcelable(key: String): T
         return obj
     }
 }
+
+fun Intent.uuRequireString(key: String): String
+{
+    val obj = extras?.getString(key)
+    if (obj == null)
+    {
+        throw RuntimeException("Expected String extra with key $key to be non-nil.")
+    }
+    else
+    {
+        return obj
+    }
+}

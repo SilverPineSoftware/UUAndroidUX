@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.silverpine.uu.core.UUThread
 
-class UUViewModelRecyclerAdapter(private val rowTapped: ((ViewModel)->Unit)): RecyclerView.Adapter<UUViewModelRecyclerAdapter.ViewHolder>()
+class UUViewModelRecyclerAdapter(private val lifecycleOwner: LifecycleOwner, private val rowTapped: ((ViewModel)->Unit)): RecyclerView.Adapter<UUViewModelRecyclerAdapter.ViewHolder>()
 {
     private val data: ArrayList<ViewModel> = ArrayList()
     private var viewTypes: ArrayList<Class<out ViewModel>> = ArrayList()
@@ -43,7 +45,7 @@ class UUViewModelRecyclerAdapter(private val rowTapped: ((ViewModel)->Unit)): Re
         val layoutId = layoutTypes[viewType]
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(layoutId, parent, false)
-        return ViewHolder(view, bindingIds[viewType], rowTapped)
+        return ViewHolder(lifecycleOwner, view, bindingIds[viewType], rowTapped)
     }
 
     override fun getItemViewType(position: Int): Int
@@ -98,12 +100,13 @@ class UUViewModelRecyclerAdapter(private val rowTapped: ((ViewModel)->Unit)): Re
         return null
     }
 
-    inner class ViewHolder(view: View, private val bindingId: Int, private val rowTapped: ((ViewModel)->Unit)) : RecyclerView.ViewHolder(view)
+    inner class ViewHolder(private val lifecycleOwner: LifecycleOwner, view: View, private val bindingId: Int, private val rowTapped: ((ViewModel)->Unit)) : RecyclerView.ViewHolder(view)
     {
         private val binding: ViewDataBinding? = DataBindingUtil.bind(itemView)
 
         fun bind(model: ViewModel)
         {
+            binding?.lifecycleOwner = lifecycleOwner
             binding?.setVariable(bindingId, model)
             binding?.executePendingBindings()
 
