@@ -50,6 +50,51 @@ fun Context.uuPrompt(
     dialog.show()
 }
 
+
+fun Context.uuPrompt(
+    title: String? = null,
+    message: String? = null,
+    positiveButtonText: String?,
+    negativeButtonText: String? = null,
+    cancelable: Boolean = true,
+    positiveAction: () -> Unit = { },
+    negativeAction: () -> Unit = { })
+{
+    val builder = AlertDialog.Builder(this)
+    builder.setCancelable(cancelable)
+
+    title?.let()
+    {
+        builder.setTitle(it)
+    }
+
+    message?.let()
+    {
+        builder.setMessage(it)
+    }
+
+    positiveButtonText?.let()
+    {
+        builder.setPositiveButton(it)
+        { dialog, _ ->
+            dialog.cancel()
+            positiveAction()
+        }
+    }
+
+    negativeButtonText?.let()
+    {
+        builder.setNegativeButton(it)
+        { dialog, _ ->
+            dialog.cancel()
+            negativeAction()
+        }
+    }
+
+    val dialog = builder.create()
+    dialog.show()
+}
+
 fun Context.uuShowToast(text: String)
 {
     UUThread.runOnMainThread()
