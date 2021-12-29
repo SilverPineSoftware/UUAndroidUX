@@ -95,6 +95,48 @@ fun Context.uuPrompt(
     dialog.show()
 }
 
+fun Context.uuPrompt(
+    @StringRes title: Int = -1,
+    @StringRes message: Int = -1,
+    @StringRes negativeButtonTextId: Int = -1,
+    selections: ArrayList<String>,
+    cancelable: Boolean = true,
+    negativeAction: () -> Unit = { },
+    selection: (Int) -> Unit)
+{
+    val builder = AlertDialog.Builder(this)
+    builder.setCancelable(cancelable)
+
+    if (title != -1)
+    {
+        builder.setTitle(title)
+    }
+
+    if (message != -1)
+    {
+        builder.setMessage(message)
+    }
+
+    if (negativeButtonTextId != -1)
+    {
+        builder.setNegativeButton(negativeButtonTextId)
+        { dialog, _ ->
+            dialog.cancel()
+            negativeAction()
+        }
+    }
+
+    builder.setItems(selections.toTypedArray())
+    { dialog, which ->
+
+        dialog.cancel()
+        selection.invoke(which)
+    }
+
+    val dialog = builder.create()
+    dialog.show()
+}
+
 fun Context.uuShowToast(text: String)
 {
     UUThread.runOnMainThread()
