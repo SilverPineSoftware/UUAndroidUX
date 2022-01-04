@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'maven-publish'
     id 'signing'
 }
@@ -49,7 +50,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
 
-    api 'com.silverpine.uu:uu-core:0.0.1-SNAPSHOT'
+    implementation 'com.silverpine.uu:uu-core:0.0.3'
 
     testImplementation 'junit:junit:4.13.2'
 

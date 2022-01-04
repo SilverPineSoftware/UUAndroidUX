@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
+    implementation 'com.silverpine.uu:uu-core:0.0.3'
     implementation project(':ux')
 
     testImplementation 'junit:junit:4.13.2'
